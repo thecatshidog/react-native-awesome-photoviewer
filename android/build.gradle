@@ -18,11 +18,11 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('AwesomePhotoviewer_compileSdkVersion', 29)
-    buildToolsVersion safeExtGet('AwesomePhotoviewer_buildToolsVersion', '29.0.2')
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
     defaultConfig {
-        minSdkVersion safeExtGet('AwesomePhotoviewer_minSdkVersion', 16)
-        targetSdkVersion safeExtGet('AwesomePhotoviewer_targetSdkVersion', 29)
+        minSdkVersion 19
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -50,9 +50,14 @@ repositories {
     }
     google()
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation 'me.relex:photodraweeview:1.1.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.stfalcon:stfalcon-imageviewer:1.0.1'
 }

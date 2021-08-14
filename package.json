@@ -90,15 +90,11 @@
     ]
   },
   "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
     "npm": {
-      "publish": true
+      "publish": false
     },
     "github": {
-      "release": true
+      "release": false
     },
     "plugins": {
       "@release-it/conventional-changelog": {
@@ -149,5 +145,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
   }
 }
