@@ -29,7 +29,7 @@ type MerryPhotoViewProps = {
   /**
    * Hide status bar
    */
-  hideStatusBar?: boolean;
+  showStatusBar?: boolean;
   /**
    * Hide close button
    */

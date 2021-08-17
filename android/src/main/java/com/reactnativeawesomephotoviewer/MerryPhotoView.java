@@ -126,6 +126,7 @@ public class MerryPhotoView extends View {
         builder.withOverlayView(overlayView);
         StfalconImageViewer imageViewer = builder.show();
         overlayView.setImageViewer(imageViewer);
+        setOverlayViewValue(getInitial());
     }
 
     private ImageRequestBuilder getLocalImage() {
@@ -141,37 +142,8 @@ public class MerryPhotoView extends View {
         return new OnImageChangeListener() {
             @Override
             public void onImageChange(int position) {
-
+                setOverlayViewValue(position);
                 final MerryPhotoData merryPhotoData = getData()[position];
-                String url = merryPhotoData.source.getString("uri");
-//                default use url
-                overlayView.setShareContext(url);
-
-                overlayView.setDescription(merryPhotoData.summary);
-                overlayView.setTitleText(merryPhotoData.title);
-
-                int summaryColor = Color.WHITE;
-                int titleColor = Color.WHITE;
-                if (getShareText() != null) {
-                    overlayView.setShareText(getShareText());
-                }
-
-                // is hide sharebutton
-                overlayView.setHideShareButton(isHideShareButton());
-                overlayView.setHideCloseButton(isHideCloseButton());
-                overlayView.setHideTitle(isHideTitle());
-
-                overlayView.setPagerText((position + 1) + " / " + getData().length);
-                if (merryPhotoData.titleColor != 0) {
-
-                    titleColor = merryPhotoData.titleColor;
-                }
-                overlayView.setTitleTextColor(titleColor);
-                if (merryPhotoData.summaryColor != 0) {
-                    summaryColor = merryPhotoData.summaryColor;
-                }
-                overlayView.setDescriptionTextColor(summaryColor);
-
                 WritableMap writableMap = Arguments.createMap();
                 writableMap.putString("title", merryPhotoData.title);
                 writableMap.putString("summary", merryPhotoData.summary);
@@ -188,6 +160,36 @@ public class MerryPhotoView extends View {
 
             }
         };
+    }
+
+    private void setOverlayViewValue(int position) {
+      final MerryPhotoData merryPhotoData = getData()[position];
+      String url = merryPhotoData.source.getString("uri");
+      overlayView.setShareContext(url);
+
+      overlayView.setDescription(merryPhotoData.summary);
+      overlayView.setTitleText(merryPhotoData.title);
+
+      int summaryColor = Color.WHITE;
+      int titleColor = Color.WHITE;
+      if (getShareText() != null) {
+          overlayView.setShareText(getShareText());
+      }
+
+      overlayView.setHideShareButton(isHideShareButton());
+      overlayView.setHideCloseButton(isHideCloseButton());
+      overlayView.setHideTitle(isHideTitle());
+
+      overlayView.setPagerText((position + 1) + " / " + getData().length);
+      if (merryPhotoData.titleColor != 0) {
+
+          titleColor = merryPhotoData.titleColor;
+      }
+      overlayView.setTitleTextColor(titleColor);
+      if (merryPhotoData.summaryColor != 0) {
+          summaryColor = merryPhotoData.summaryColor;
+      }
+      overlayView.setDescriptionTextColor(summaryColor);
     }
 
     /**

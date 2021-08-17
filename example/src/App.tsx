@@ -38,8 +38,8 @@ export default function App() {
       <MerryPhotoViewManager
         visible={visible}
         data={photos}
-        hideStatusBar={true}
-        hideCloseButton={true}
+        showStatusBar={false}
+        hideCloseButton={false}
         hideShareButton={true}
         initial={index}
         onDismiss={() => {
