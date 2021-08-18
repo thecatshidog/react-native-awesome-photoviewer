@@ -57,7 +57,7 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.appcompat:appcompat:1.0.0"
-    implementation 'me.relex:photodraweeview:1.1.0'
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.stfalcon:stfalcon-imageviewer:1.0.1'
 }

@@ -1,37 +1,51 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tvTitlePager"
-        style="@style/TitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:textAlignment="center" />
-
+    android:orientation="vertical"
+    >
+  <RelativeLayout
+    android:id="@+id/barContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true">
     <ImageButton
-        android:id="@+id/btnClose"
-        style="@style/SimpleImageButtonStyle"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/close_button_x" />
+      android:id="@+id/btnClose"
+      style="@style/SimpleImageButtonStyle"
+      android:layout_width="20dp"
+      android:layout_height="20dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_marginLeft="20dp"
+      android:scaleType="fitXY"
+      android:src="@drawable/close_button_x" />
+    <TextView
+      android:id="@+id/tvTitlePager"
+      style="@style/TitleText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:padding="0dp"
+      android:textAlignment="center" />
     <Button
-        android:id="@+id/btnShare"
-        style="@style/SimpleButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/share" />
+      android:id="@+id/btnShare"
+      style="@style/SimpleButtonStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:text="@string/share" />
+  </RelativeLayout>
+
+  <ImageButton
+    android:id="@+id/loadingImg"
+    style="@style/SimpleImageButtonStyle"
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:layout_centerInParent="true"
+    android:scaleType="fitXY"
+    android:src="@drawable/loading" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

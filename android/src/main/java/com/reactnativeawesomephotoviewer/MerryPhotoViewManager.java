@@ -2,7 +2,9 @@ package com.reactnativeawesomephotoviewer;
 
 import android.content.Context;
 import android.util.Log;
+import android.app.Activity;
 
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -24,9 +26,10 @@ import javax.annotation.Nullable;
 
 import com.reactnativeawesomephotoviewer.Utils;
 
+
 public class MerryPhotoViewManager extends SimpleViewManager<MerryPhotoView> {
     public static final String REACT_CLASS = "MerryPhotoView";
-    private Context context;
+    private ReactContext context;
 
     @Override
     public String getName() {

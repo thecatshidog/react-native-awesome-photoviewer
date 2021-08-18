@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  StatusBar,
+} from 'react-native';
 import MerryPhotoViewManager from 'react-native-awesome-photoviewer';
 
 const photos = [
@@ -24,21 +30,24 @@ const photos = [
 export default function App() {
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
+  useEffect(() => {
+    StatusBar.setHidden(false);
+    StatusBar.setBarStyle('light-content');
+  }, []);
   return (
     <View style={styles.container}>
-      <View
+      <TouchableWithoutFeedback
         style={styles.box}
-        onTouchStart={() => {
+        onPress={() => {
           setIndex(1);
           setVisible(true);
         }}
       >
         <Text>asdf</Text>
-      </View>
+      </TouchableWithoutFeedback>
       <MerryPhotoViewManager
         visible={visible}
         data={photos}
-        showStatusBar={false}
         hideCloseButton={false}
         hideShareButton={true}
         initial={index}

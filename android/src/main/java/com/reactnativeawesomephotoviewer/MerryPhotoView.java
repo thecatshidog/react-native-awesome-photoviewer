@@ -4,6 +4,10 @@ package com.reactnativeawesomephotoviewer;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
+import android.view.Window;
+import android.app.Activity;
+import android.view.WindowManager;
+import android.os.Build;
 
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
@@ -12,9 +16,12 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.views.imagehelper.ImageSource;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Callback;
+
 import com.stfalcon.imageviewer.StfalconImageViewer;
 import com.stfalcon.imageviewer.listeners.OnDismissListener;
 import com.stfalcon.imageviewer.listeners.OnImageChangeListener;
@@ -23,6 +30,12 @@ public class MerryPhotoView extends View {
 
     private MerryPhotoOverlay overlayView;
     protected StfalconImageViewer.Builder builder;
+    private ThemedReactContext mThemedReactContext;
+
+    public MerryPhotoView(ThemedReactContext themedReactContext) {
+        super(themedReactContext);
+        mThemedReactContext = themedReactContext;
+    }
 
     public MerryPhotoData[] getData() {
         return data;
@@ -104,25 +117,28 @@ public class MerryPhotoView extends View {
     }
 
 
-    public MerryPhotoView(Context context) {
-        super(context);
-    }
-
     protected void init() {
         if(builder != null){
             return;
         }
         final Context context = getContext();
-
+        overlayView = new MerryPhotoOverlay(mThemedReactContext);
         StfalconImageViewer.Builder<MerryPhotoData> builder = new StfalconImageViewer.Builder<>(context, getData(), (imgViewer, photo) ->
         Picasso.get()
         .load(photo.source.getString("uri"))
-        .into(imgViewer));
+        .into(imgViewer, new Callback() {
+          @Override
+          public void onSuccess() {
+            overlayView.hiddenLoading();
+          }
+          @Override
+          public void onError(Exception ex) {}
+        }));
+        builder.withStartPosition(200);
         builder.withDismissListener(getDismissListener());
         builder.withImageChangeListener(getImageChangeListener());
         builder.withStartPosition(getInitial());
         builder.withHiddenStatusBar(isHideStatusBar());
-        overlayView = new MerryPhotoOverlay(context);
         builder.withOverlayView(overlayView);
         StfalconImageViewer imageViewer = builder.show();
         overlayView.setImageViewer(imageViewer);

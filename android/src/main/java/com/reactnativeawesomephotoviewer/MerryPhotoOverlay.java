@@ -8,12 +8,19 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.facebook.react.uimanager.ThemedReactContext;
+
 
 import com.reactnativeawesomephotoviewer.R;
 import com.stfalcon.imageviewer.StfalconImageViewer;
+
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -27,13 +34,18 @@ public class MerryPhotoOverlay extends RelativeLayout {
     private TextView tvDescription;
     private TextView tvShare;
     private ImageButton tvClose;
+    private ImageView loadingImg;
     private StfalconImageViewer imageViewer;
     private String sharingText;
+    private RelativeLayout statusBar;
+    private ThemedReactContext mThemedReactContext;
+
     public void setImageViewer(StfalconImageViewer imageViewer){
         this.imageViewer = imageViewer;
     }
-    public MerryPhotoOverlay(Context context) {
+    public MerryPhotoOverlay(ThemedReactContext context) {
         super(context);
+        mThemedReactContext = context;
         init();
     }
 
@@ -94,6 +106,19 @@ public class MerryPhotoOverlay extends RelativeLayout {
         tvTitle.setText(text);
     }
 
+    public void hiddenLoading() {
+      loadingImg.setVisibility(View.GONE);
+    }
+
+    public int getStateBarHeight() {
+      int height = 0;
+      int id = mThemedReactContext.getApplicationContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+      if (id > 0) {
+        height = mThemedReactContext.getApplicationContext().getResources().getDimensionPixelSize(id);
+      }
+      return height;
+    }
+
     private void sendShareIntent() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -104,12 +129,20 @@ public class MerryPhotoOverlay extends RelativeLayout {
 
     private void init() {
         View view = inflate(getContext(), R.layout.photo_viewer_overlay, this);
-
         tvTitlePager = (TextView) view.findViewById(R.id.tvTitlePager);
         tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         tvDescription = (TextView) view.findViewById(R.id.tvDescription);
-
+        loadingImg = (ImageView) view.findViewById(R.id.loadingImg);
+        statusBar = (RelativeLayout) view.findViewById(R.id.barContainer);
         tvShare = (TextView) view.findViewById(R.id.btnShare);
+
+        Picasso.get()
+        .load(R.drawable.loading)
+        .into(loadingImg);
+
+        RelativeLayout.LayoutParams lp = (LayoutParams) statusBar.getLayoutParams();
+        lp.topMargin = getStateBarHeight();
+        statusBar.setLayoutParams(lp);
         tvShare.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

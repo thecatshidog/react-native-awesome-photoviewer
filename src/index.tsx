@@ -27,10 +27,6 @@ type MerryPhotoViewProps = {
    */
   initial: number;
   /**
-   * Hide status bar
-   */
-  showStatusBar?: boolean;
-  /**
    * Hide close button
    */
   hideCloseButton?: boolean;
@@ -123,6 +119,7 @@ class MerryPhotoView extends React.Component<MerryPhotoViewProps, any> {
       <MerryPhotoViewManagerManager
         key={this.startPosition}
         {...(props as any)}
+        showStatusBar={false}
         initial={this.startPosition}
         data={transformData}
         onChange={this.onChange}
