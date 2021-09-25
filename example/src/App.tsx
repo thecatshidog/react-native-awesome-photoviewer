@@ -12,7 +12,7 @@ import MerryPhotoViewManager from 'react-native-awesome-photoviewer';
 const photos = [
   {
     source: {
-      uri: 'https://images.pexels.com/photos/142615/pexels-photo-142615.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb',
+      uri: 'https://i.postimg.cc/SKhT7NwQ/funny-animals-dog.gif',
     },
   },
   {

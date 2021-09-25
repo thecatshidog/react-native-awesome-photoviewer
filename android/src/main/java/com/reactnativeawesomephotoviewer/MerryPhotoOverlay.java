@@ -20,8 +20,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.reactnativeawesomephotoviewer.R;
 import com.stfalcon.imageviewer.StfalconImageViewer;
 
-import com.squareup.picasso.Picasso;
-
+import com.bumptech.glide.Glide;
 
 /**
  * Created by bang on 26/07/2017.
@@ -136,7 +135,7 @@ public class MerryPhotoOverlay extends RelativeLayout {
         statusBar = (RelativeLayout) view.findViewById(R.id.barContainer);
         tvShare = (TextView) view.findViewById(R.id.btnShare);
 
-        Picasso.get()
+        Glide.with(mThemedReactContext)
         .load(R.drawable.loading)
         .into(loadingImg);
 

@@ -19,12 +19,21 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.views.imagehelper.ImageSource;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Callback;
-
 import com.stfalcon.imageviewer.StfalconImageViewer;
 import com.stfalcon.imageviewer.listeners.OnDismissListener;
 import com.stfalcon.imageviewer.listeners.OnImageChangeListener;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+import android.util.Log;
 
 public class MerryPhotoView extends View {
 
@@ -124,16 +133,24 @@ public class MerryPhotoView extends View {
         final Context context = getContext();
         overlayView = new MerryPhotoOverlay(mThemedReactContext);
         StfalconImageViewer.Builder<MerryPhotoData> builder = new StfalconImageViewer.Builder<>(context, getData(), (imgViewer, photo) ->
-        Picasso.get()
+        Glide.with(mThemedReactContext)
         .load(photo.source.getString("uri"))
-        .into(imgViewer, new Callback() {
-          @Override
-          public void onSuccess() {
-            overlayView.hiddenLoading();
-          }
-          @Override
-          public void onError(Exception ex) {}
-        }));
+        .listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                Log.i("test", "onLoadFailed="+e);
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                Log.i("test", "onResourceReady!");
+                overlayView.hiddenLoading();
+                return false;
+            }
+        })
+        .into(imgViewer));
+
         builder.withStartPosition(200);
         builder.withDismissListener(getDismissListener());
         builder.withImageChangeListener(getImageChangeListener());
