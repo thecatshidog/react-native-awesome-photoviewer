@@ -1,12 +1,24 @@
 package com.reactnativeawesomephotoview;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.module.annotations.ReactModule;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import cc.shinichi.library.ImagePreview;
+import cc.shinichi.library.bean.ImageInfo;
 
 @ReactModule(name = AwesomePhotoviewModule.NAME)
 public class AwesomePhotoviewModule extends ReactContextBaseJavaModule {
@@ -23,12 +35,26 @@ public class AwesomePhotoviewModule extends ReactContextBaseJavaModule {
     }
 
 
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
     @ReactMethod
-    public void multiply(int a, int b, Promise promise) {
-        promise.resolve(a * b);
-    }
+    public void open(ReadableMap config, Promise promise) {
+      ReadableArray imgs = config.getArray("images");
+      int index = config.getInt("initialIndex");
+      ImageInfo imageInfo;
+      final List<ImageInfo> imageInfoList = new ArrayList<>();
+      for (int i = 0; i < imgs.size(); i++) {
+        imageInfo = new ImageInfo();
+        ReadableMap imgMap = imgs.getMap(i);
+        // 原图地址
+        imageInfo.setOriginUrl(imgMap.getString("url"));
+        imageInfo.setThumbnailUrl(imgMap.getString("thumbnailUrl"));
+        imageInfoList.add(imageInfo);
+      }
+      ImagePreview instance = ImagePreview.getInstance();
+      instance.setContext(getCurrentActivity())
+      .setIndex(index)
+        .setImageInfoList(imageInfoList)
+        .start();
 
-    public static native int nativeMultiply(int a, int b);
+      promise.resolve(true);
+    }
 }
