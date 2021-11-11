@@ -1,26 +1,37 @@
-# react-native-awesome-photoview
-
-photoviewer
+# react-native-awesome-photoviewer
 
 ## Installation
+```
+npm install react-native-awesome-photoviewer
+```
+for ios
 
-```sh
-npm install react-native-awesome-photoview
+```
+pod install
 ```
 
 ## Usage
 
-```js
-import AwesomePhotoview from "react-native-awesome-photoview";
-
-// ...
-
-const result = await AwesomePhotoview.multiply(3, 7);
 ```
+import PhotoViewer from "react-native-awesome-photoviewer";
 
-## Contributing
+interface IImage {
+  thumbnailUrl: string;
+  url: string;
+}
+interface IConfig {
+  initialIndex?: number;
+  images: IImage[];
+}
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+type AwesomePhotoviewType = {
+  open(config: IConfig): Promise<boolean>;
+};
+PhotoViewer.open({
+      initialIndex,
+      images,
+    });
+```
 
 ## License
 
