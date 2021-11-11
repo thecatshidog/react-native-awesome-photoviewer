@@ -23,6 +23,7 @@ export const photoView = {
     if (initialIndex > images.length - 1) {
       throw new Error('initialIndex range of images length');
     }
+    console.log("photo open begin")
     AwesomePhotoview.open({
       initialIndex,
       images,

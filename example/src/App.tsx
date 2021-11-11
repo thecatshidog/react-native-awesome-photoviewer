@@ -20,6 +20,7 @@ export default function App() {
     AwesomePhotoview.open({ images, initialIndex: 0 }).then((res) => {
       console.log(res);
     });
+    console.log("photo open done");
   };
 
   return (
