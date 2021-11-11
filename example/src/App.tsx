@@ -16,6 +16,10 @@ export default function App() {
         thumbnailUrl:
           'https://wx4.sinaimg.cn/mw2000/001VFbaMgy1gw8q2122k9j60h838xtxk02.jpg',
       },
+      {
+        url: 'https://s3.bmp.ovh/imgs/2021/11/f11b3d0c5dab026a.jpg',
+        thumbnailUrl: 'https://s3.bmp.ovh/imgs/2021/11/f11b3d0c5dab026a.jpg',
+      },
     ];
     AwesomePhotoview.open({ images, initialIndex: 0 }).then((res) => {
       console.log(res);
