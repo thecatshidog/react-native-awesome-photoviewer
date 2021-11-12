@@ -37,7 +37,6 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)config withResolver:(RCTPromiseResolveBlo
         if ([obj hasSuffix:@".mp4"] && [obj hasPrefix:@"http"]) {
             // 网络视频
             YBIBVideoData *data = [YBIBVideoData new];
-            data.allowSaveToPhotoAlbum = NO;
             data.videoURL = [NSURL URLWithString:obj];
             [datas addObject:data];
          
@@ -45,21 +44,19 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)config withResolver:(RCTPromiseResolveBlo
             // 本地视频
             NSString *path = [[NSBundle mainBundle] pathForResource:obj.stringByDeletingPathExtension ofType:obj.pathExtension];
             YBIBVideoData *data = [YBIBVideoData new];
-            data.allowSaveToPhotoAlbum = NO;
             data.videoURL = [NSURL fileURLWithPath:path];
             [datas addObject:data];
             
         } else if ([obj hasPrefix:@"http"]) {
             // 网络图片
             YBIBImageData *data = [YBIBImageData new];
-            data.allowSaveToPhotoAlbum = NO;
             data.imageURL = [NSURL URLWithString:obj];
+//            data.allowSaveToPhotoAlbum = NO;
             [datas addObject:data];
             
         } else {
             // 本地图片
             YBIBImageData *data = [YBIBImageData new];
-            data.allowSaveToPhotoAlbum = NO;
             data.imageName = obj;
             [datas addObject:data];
             
