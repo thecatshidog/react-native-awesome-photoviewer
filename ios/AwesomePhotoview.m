@@ -50,13 +50,16 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)config withResolver:(RCTPromiseResolveBlo
         } else if ([obj hasPrefix:@"http"]) {
             // 网络图片
             YBIBImageData *data = [YBIBImageData new];
+            data.defaultLayout.verticalFillType = YBIBImageFillTypeFullWidth;
+            data.defaultLayout.horizontalFillType = YBIBImageFillTypeCompletely;
             data.imageURL = [NSURL URLWithString:obj];
-//            data.allowSaveToPhotoAlbum = NO;
             [datas addObject:data];
             
         } else {
             // 本地图片
             YBIBImageData *data = [YBIBImageData new];
+            data.defaultLayout.verticalFillType = YBIBImageFillTypeFullWidth;
+            data.defaultLayout.horizontalFillType = YBIBImageFillTypeCompletely;
             data.imageName = obj;
             [datas addObject:data];
             
