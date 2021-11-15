@@ -1,6 +1,6 @@
 {
   "name": "react-native-awesome-photoviewer",
-  "version": "0.5.3",
+  "version": "0.5.7",
   "description": "photoviewer",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
