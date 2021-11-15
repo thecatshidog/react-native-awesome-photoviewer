@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import android.view.View;
 
 import cc.shinichi.library.ImagePreview;
 import cc.shinichi.library.bean.ImageInfo;
@@ -37,6 +38,9 @@ public class AwesomePhotoviewModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void open(ReadableMap config, Promise promise) {
+
+      getCurrentActivity().getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
+
       ReadableArray imgs = config.getArray("images");
       int index = config.getInt("initialIndex");
       ImageInfo imageInfo;
