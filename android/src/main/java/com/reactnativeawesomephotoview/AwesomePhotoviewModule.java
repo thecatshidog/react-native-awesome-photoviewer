@@ -26,6 +26,7 @@ public class AwesomePhotoviewModule extends ReactContextBaseJavaModule {
     public static final String NAME = "AwesomePhotoview";
 
     public AwesomePhotoviewModule(ReactApplicationContext reactContext) {
+        getCurrentActivity().getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
         super(reactContext);
     }
 
@@ -38,9 +39,6 @@ public class AwesomePhotoviewModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void open(ReadableMap config, Promise promise) {
-
-      getCurrentActivity().getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN);
-
       ReadableArray imgs = config.getArray("images");
       int index = config.getInt("initialIndex");
       ImageInfo imageInfo;
