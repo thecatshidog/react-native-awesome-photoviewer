@@ -248,7 +248,7 @@ PODS:
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
   - React-jsinspector (0.63.4)
-  - react-native-awesome-photoview (0.5.3):
+  - react-native-awesome-photoview (0.5.7):
     - React-Core
   - React-RCTActionSheet (0.63.4):
     - React-Core/RCTActionSheetHeaders (= 0.63.4)
@@ -375,10 +375,10 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - YBImageBrowser
-  - YBImageBrowser/Video
+  - YBImageBrowser (from `https://github.com/web3miaomiao/YBImageBrowser.git`)
+  - YBImageBrowser/Video (from `https://github.com/web3miaomiao/YBImageBrowser.git`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
-  - YYImage (from `https://github.com/QiuYeHong90/YYImage.git`)
+  - YYImage (from `https://github.com/web3miaomiao/YYImage.git`)
 
 SPEC REPOS:
   trunk:
@@ -396,7 +396,6 @@ SPEC REPOS:
     - libevent
     - OpenSSL-Universal
     - SDWebImage
-    - YBImageBrowser
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -452,15 +451,20 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  YBImageBrowser:
+    :git: https://github.com/web3miaomiao/YBImageBrowser.git
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
   YYImage:
-    :git: https://github.com/QiuYeHong90/YYImage.git
+    :git: https://github.com/web3miaomiao/YYImage.git
 
 CHECKOUT OPTIONS:
+  YBImageBrowser:
+    :commit: 5651919fe0a4c558be54d7cb14ff7bc1b2a3054e
+    :git: https://github.com/web3miaomiao/YBImageBrowser.git
   YYImage:
     :commit: 4164acb76e8979c0612530bd874e099a1fa51e9d
-    :git: https://github.com/QiuYeHong90/YYImage.git
+    :git: https://github.com/web3miaomiao/YYImage.git
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
@@ -491,7 +495,7 @@ SPEC CHECKSUMS:
   React-jsi: a0418934cf48f25b485631deb27c64dc40fb4c31
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
-  react-native-awesome-photoview: 8339f72ac1ad15211a15bd4baff63a9fa1189c7f
+  react-native-awesome-photoview: f12d847b486457096f1ff03aaecc8ce2c265fa7f
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0
@@ -508,6 +512,6 @@ SPEC CHECKSUMS:
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
   YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
 
-PODFILE CHECKSUM: a65f3ce2efa1f5ebfb429180dbeb9af268a8f9ee
+PODFILE CHECKSUM: 345bd36044e83f6dccee375d4ff6e91179acc317
 
 COCOAPODS: 1.11.2

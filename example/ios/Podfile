@@ -12,9 +12,9 @@ target 'AwesomePhotoviewExample' do
   pod 'react-native-awesome-photoview', :path => '../..'
 #  pod 'Lantern'
 #  pod 'SDWebImage'
-  pod 'YBImageBrowser'
-  pod 'YBImageBrowser/Video'
-  pod 'YYImage', :git => 'https://github.com/QiuYeHong90/YYImage.git'
+  pod 'YBImageBrowser', :git => 'https://github.com/web3miaomiao/YBImageBrowser.git'
+  pod 'YBImageBrowser/Video', :git => 'https://github.com/web3miaomiao/YBImageBrowser.git'
+  pod 'YYImage', :git => 'https://github.com/web3miaomiao/YYImage.git'
 
 
   # Enables Flipper.
